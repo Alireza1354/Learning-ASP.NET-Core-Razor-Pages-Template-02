@@ -1,0 +1,59 @@
+﻿@page
+@model Server.Pages.Admin.RoleManager.DeleteModel
+@{
+    var pageTitle =
+        Resources.PageTitles.CreateRole;
+
+    ViewData["PageTitle"] = pageTitle;
+
+    if (System.Threading.Thread.CurrentThread.CurrentUICulture.TextInfo.IsRightToLeft)
+    {
+        Layout =
+            "Layouts/Rtl/_Security";
+    }
+    else
+    {
+        Layout =
+            "Layouts/Ltr/_Security";
+    }
+}
+
+
+
+
+<div class="container my-0 my-sm-1 my-md-3 my-lg-5">
+    <div class="row">
+        <div class="col-12 p-3   col-md-8 offset-md-2 p-md-4   col-lg-6 offset-lg-3 p-lg-5   bg-light border border-2 rounded-3 shadow-lg">
+            <fieldset>
+                <legend>
+                    @(Resources.PageTitles.DeleteRole)
+                </legend>
+
+
+                <div class="mb-3">
+                    <label asp-for="Role.Id" class="form-label"></label>
+                    <input asp-for="Role.Id" readonly class="form-control" dir="ltr" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Role.RoleName" class="form-label"></label>
+                    <input asp-for="Role.RoleName" readonly class="form-control" dir="ltr" />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Role.InsertDateTime" class="form-label"></label>
+                    <input asp-for="Role.InsertDateTime" readonly class="form-control" dir="ltr" />
+                </div>
+
+            </fieldset>
+
+            <hr class="mt-4" />
+
+            <div class="text-center">
+                <form method="post">
+                    <input type="hidden" asp-for="Role.Id" />
+                    <input type="submit" value="حذف" class="btn btn-outline-danger" /> |
+                    <a asp-page="./Index" class="btn btn-info">بازگشت به فهرست</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

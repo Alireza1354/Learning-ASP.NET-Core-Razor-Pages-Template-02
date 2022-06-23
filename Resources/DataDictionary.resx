@@ -159,6 +159,9 @@
   <data name="ListOf" xml:space="preserve">
     <value>List of </value>
   </data>
+  <data name="ListOfRoles" xml:space="preserve">
+    <value>List Of Roles</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>Name</value>
   </data>
@@ -173,6 +176,9 @@
   </data>
   <data name="Resume" xml:space="preserve">
     <value>Resume</value>
+  </data>
+  <data name="RoleName" xml:space="preserve">
+    <value>Role Name</value>
   </data>
   <data name="SiteAuthor" xml:space="preserve">
     <value>Dariush Tasdighi</value>

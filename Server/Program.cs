@@ -96,7 +96,7 @@ builder.Services
 // **************************************************
 // GetConnectionString() -> using Microsoft.Extensions.Configuration;
 var connectionString =
-	builder.Configuration.GetConnectionString(name: "ConnectionString");
+	builder.Configuration.GetConnectionString(name: "ConnectionString01");
 
 // AddDbContext -> using Microsoft.Extensions.DependencyInjection;
 builder.Services.AddDbContext<Persistence.DatabaseContext>

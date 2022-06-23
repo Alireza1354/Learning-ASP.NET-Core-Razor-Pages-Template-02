@@ -1,4 +1,12 @@
-﻿namespace Persistence
+﻿using Domain.Account;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Persistence
 {
 	public class DatabaseContext : Microsoft.EntityFrameworkCore.DbContext
 	{
@@ -18,5 +26,7 @@
 			(Microsoft.EntityFrameworkCore.ModelBuilder modelBuilder)
 		{
 		}
+
+		public virtual DbSet<Role> Role { get; set; }
 	}
 }

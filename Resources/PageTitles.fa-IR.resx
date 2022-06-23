@@ -132,8 +132,20 @@
   <data name="Contact" xml:space="preserve">
     <value>تماس با ما</value>
   </data>
+  <data name="CreateRole" xml:space="preserve">
+    <value>ایجاد نقش کاربر</value>
+  </data>
   <data name="DeactivateAccount" xml:space="preserve">
     <value>غیرفعال کردن حساب کاربری</value>
+  </data>
+  <data name="DeleteRole" xml:space="preserve">
+    <value>حذف نقش کاربر</value>
+  </data>
+  <data name="DetailsRole" xml:space="preserve">
+    <value>جزئیات نقش کاربر</value>
+  </data>
+  <data name="EditRole" xml:space="preserve">
+    <value>اصلاح نقش کاربر</value>
   </data>
   <data name="Error500" xml:space="preserve">
     <value>خطای داخلی سرور!</value>
@@ -164,6 +176,9 @@
   </data>
   <data name="UpdateProfile" xml:space="preserve">
     <value>ویرایش مشخصات</value>
+  </data>
+  <data name="UserRoles" xml:space="preserve">
+    <value>فهرست نقش کاربر</value>
   </data>
   <data name="UserSettings" xml:space="preserve">
     <value>تنظیمات کاربری</value>
