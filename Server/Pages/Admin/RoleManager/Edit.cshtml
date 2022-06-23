@@ -35,9 +35,14 @@
                         <input asp-for="Role.RoleName" class="form-control" dir="ltr" />
                         <span asp-validation-for="Role.RoleName" class="text-danger"></span>
                     </div>
+                    <div class="form-group form-check">
+                        <label class="form-check-label">
+                            <input class="form-check-input" asp-for="Role.IsActive" /> @Html.DisplayNameFor(model => model.Role.IsActive)
+                        </label>
+                    </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-outline-success">@(Resources.ButtonCaptions.Save)</button>
-                        <button type="reset" class="btn btn-outline-primary">@(Resources.ButtonCaptions.Reset)</button>
+                        <button type="reset" class="btn btn-outline-danger">@(Resources.ButtonCaptions.Reset)</button>
                     </div>
                 </form>
 
@@ -46,9 +51,9 @@
             <hr class="mt-4" />
 
             <div class="text-center">
-                <a asp-page="Index">@(Resources.DataDictionary.ListOfRoles)</a>
+                <a asp-page="./Index" class="btn btn-outline-secondary">@(Resources.ButtonCaptions.Back)</a>
                 |
-                <a href="/">@(Resources.ButtonCaptions.Home)</a>
+                <a href="/" class="btn btn-outline-primary">@(Resources.ButtonCaptions.Home)</a>
             </div>
         </div>
     </div>

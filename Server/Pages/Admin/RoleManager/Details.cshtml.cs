@@ -7,7 +7,7 @@ using System;
 
 namespace Server.Pages.Admin.RoleManager
 {
-    public class DetailsModel : PageModel
+    public class DetailsModel : Infrastructure.BasePageModel
     {
 
         private readonly Persistence.DatabaseContext _context;

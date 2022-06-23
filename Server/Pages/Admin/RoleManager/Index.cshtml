@@ -24,10 +24,10 @@
 <div class="row">
     <div class="col table-responsive">
         <p>
-            <a class="btn btn-outline-info" asp-page="Create">ثبت نقش جدید</a>
+            <a class="btn btn-outline-info" asp-page="Create">@(Resources.ButtonCaptions.Create)</a>
         </p>
         <table class="@(applicationSettings.FileManagerSettings.TableStyle)">
-            <caption>فهرست نقش کاربر</caption>
+            <caption>@(Resources.DataDictionary.ListOfRoles)</caption>
             <thead>
                 <tr>
                     <th>
@@ -38,6 +38,9 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Roles[0].RoleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Roles[0].IsActive)
                     </th>
 
                     <th></th>
@@ -57,9 +60,12 @@
                             @Html.DisplayFor(modelItem => item.RoleName)
                         </td>
                         <td>
-                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-success">اصلاح</a> |
-                            <a asp-page="./Detail" asp-route-id="@item.Id" class="btn btn-outline-info">جزئیات</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">حذف</a>
+                            @Html.DisplayFor(modelItem => item.IsActive)
+                        </td>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-success">@(Resources.ButtonCaptions.Edit)</a> |
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-info">@(Resources.ButtonCaptions.Details)</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-outline-danger">@(Resources.ButtonCaptions.Delete)</a>
                         </td>
                     </tr>
                 }

@@ -28,5 +28,10 @@ namespace Domain.Account
             ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
         public string RoleName { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Display
+            (Name = nameof(Resources.DataDictionary.IsActive),
+            ResourceType = typeof(Resources.DataDictionary))]
+        public bool IsActive { get; set; } = false;
     }
 }

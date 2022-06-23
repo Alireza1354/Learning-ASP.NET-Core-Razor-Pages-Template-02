@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Server.Pages.Admin.RoleManager
 {
-    public class EditModel : PageModel
+    public class EditModel : Infrastructure.BasePageModel
     {
 
         private readonly Persistence.DatabaseContext _context;
