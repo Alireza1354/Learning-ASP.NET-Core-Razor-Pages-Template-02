@@ -126,6 +126,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تکرار گذرواژه</value>
   </data>
+  <data name="DeleteConfirmationMessage" xml:space="preserve">
+    <value>آیا مطمئن هستید که می خواهید حذف کنید؟</value>
+  </data>
   <data name="Description" xml:space="preserve">
     <value>توضیحات</value>
   </data>

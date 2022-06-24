@@ -1,9 +1,4 @@
-using Domain.Account;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using System;
 using System.Linq;
 
 namespace Server.Pages.Admin.RoleManager
@@ -13,21 +8,23 @@ namespace Server.Pages.Admin.RoleManager
 
         private readonly Persistence.DatabaseContext _context;
 
-        public EditModel(Persistence.DatabaseContext Context)
+        public EditModel(Persistence.DatabaseContext Context) : base()
         {
             _context = Context;
         }
 
-        [BindProperty]
-        public Role Role { get; set; } = default!;
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public Domain.Account.Role Role { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
         {
             if (id == null || _context.Role == null)
             {
                 return NotFound();
             }
 
+            //FirstOrDefaultAsync -> Microsoft.EntityFrameworkCore
             var role = await _context.Role.FirstOrDefaultAsync(m => m.Id == id);
             if (role == null)
             {
@@ -37,8 +34,8 @@ namespace Server.Pages.Admin.RoleManager
             return Page();
         }
 
-        
-        public async Task<IActionResult> OnPostAsync()
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
@@ -66,8 +63,9 @@ namespace Server.Pages.Admin.RoleManager
             return RedirectToPage("./Index");
         }
 
-        private bool RoleExists(Guid id)
+        private bool RoleExists(System.Guid id)
         {
+            //Any -> System.Linq
             return (_context.Role?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }

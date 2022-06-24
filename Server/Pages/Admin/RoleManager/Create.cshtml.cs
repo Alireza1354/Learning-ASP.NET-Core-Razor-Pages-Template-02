@@ -1,30 +1,28 @@
-using Domain.Account;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Threading.Tasks;
 
 namespace Server.Pages.Admin.RoleManager
 {
     public class CreateModel : Infrastructure.BasePageModel
     {
 
-        private readonly Persistence.DatabaseContext _context;
-
-        public CreateModel(Persistence.DatabaseContext Context)
+        public CreateModel(Persistence.DatabaseContext Context) : base()
         {
             _context = Context;
+
             Role = new();
         }
 
-        public IActionResult OnGet()
+        private readonly Persistence.DatabaseContext _context;
+
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public Domain.Account.Role Role { get; set; }
+
+        public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
         {
             return Page();
         }
 
-        [BindProperty]
-        public Role Role { get; set; }
-
-        public async Task<IActionResult> OnPostAsync()
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
             {

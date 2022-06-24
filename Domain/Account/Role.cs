@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Domain.Account
 {
-    public class Role: SeedWork.Entity
+    public class Role : SeedWork.Entity, SeedWork.IEntityHasIsActive
     {
-        public Role()
+
+        public Role():base()
         {
             RoleName = "User Role";
         }
+
+        //*****************************************************************************
 
         [System.ComponentModel.DataAnnotations.Display
             (Name = nameof(Resources.DataDictionary.RoleName),
@@ -29,9 +32,15 @@ namespace Domain.Account
 
         public string RoleName { get; set; }
 
+        //*****************************************************************************
+
         [System.ComponentModel.DataAnnotations.Display
-            (Name = nameof(Resources.DataDictionary.IsActive),
-            ResourceType = typeof(Resources.DataDictionary))]
-        public bool IsActive { get; set; } = false;
+           (Name = nameof(Resources.DataDictionary.IsActive),
+           ResourceType = typeof(Resources.DataDictionary))]
+
+        public bool IsActive { get; set; }
+
+        //*****************************************************************************
+
     }
 }

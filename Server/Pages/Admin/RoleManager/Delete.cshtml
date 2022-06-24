@@ -41,7 +41,7 @@
 
                 <div class="form-group form-check">
                     <label class="form-check-label">
-                        <input class="form-check-input" asp-for="Role.IsActive" disabled/> @Html.DisplayNameFor(model => model.Role.IsActive)
+                        <input class="form-check-input" asp-for="Role.IsActive" disabled /> @Html.DisplayNameFor(model => model.Role.IsActive)
                     </label>
                 </div>
 
@@ -50,12 +50,57 @@
             <hr class="mt-4" />
 
             <div class="text-center">
-                <form method="post">
-                    <input type="hidden" asp-for="Role.Id" />
-                    <input type="submit" value="@(Resources.ButtonCaptions.Delete)" class="btn btn-outline-danger" /> |
-                    <a asp-page="./Index" class="btn btn-outline-secondary">@(Resources.ButtonCaptions.Back)</a>
-                </form>
+                <button type="button" class="btn btn-outline-danger" onclick="openModal()">
+                    @(Resources.ButtonCaptions.Delete)
+                </button>
+                |
+                <a asp-page="./Index" class="btn btn-outline-secondary">@(Resources.ButtonCaptions.Back)</a>
             </div>
         </div>
     </div>
 </div>
+
+
+<div class="modal fade" id="delete-conformation" data-bs-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="deleteconformationLabel">
+    <div class="modal-dialog modal-dialog-centered" style="width:501px !important;margin:0 auto;">
+        <div class="modal-content">
+            <div class="modal-header" style="background:#d9534f;color:white;">
+                <h4 class="modal-title" id="delete-conformation">
+                    @(Resources.PageTitles.DeleteRole)
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <span>
+                                @(Resources.DataDictionary.DeleteConfirmationMessage)
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" onclick="closeModal()">@(Resources.ButtonCaptions.No)</button>
+                    <a asp-page-handler="Delete" asp-route-Id="@Model.Role.Id" class="btn btn-outline-danger mr-1">
+                        @(Resources.ButtonCaptions.Delete)
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+        function openModal() {
+            $('#delete-conformation').modal('show')
+        }
+        function closeModal() {
+            $('#delete-conformation').modal('hide')
+        }
+
+    </script>
+
+}

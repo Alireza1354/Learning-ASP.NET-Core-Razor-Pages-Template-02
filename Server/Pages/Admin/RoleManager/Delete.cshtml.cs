@@ -1,36 +1,33 @@
-using Domain.Account;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
-using System;
 
 namespace Server.Pages.Admin.RoleManager
 {
     public class DeleteModel : Infrastructure.BasePageModel
     {
 
-        private readonly Persistence.DatabaseContext _context;
-
-        public DeleteModel(Persistence.DatabaseContext Context)
+        public DeleteModel(Persistence.DatabaseContext Context) : base()
         {
             _context = Context;
+
             Role = new();
         }
 
+        private readonly Persistence.DatabaseContext _context;
 
-        [BindProperty]
-        public Role Role { get; set; } = default!;
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public Domain.Account.Role Role { get; set; } = default!;
 
-        public async Task<IActionResult> OnGetAsync(Guid? id)
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
         {
+
             if (id == null || _context.Role == null)
             {
                 return NotFound();
             }
 
+            //FirstOrDefaultAsync -> using Microsoft.EntityFrameworkCore;
             var role = await _context.Role.FirstOrDefaultAsync(m => m.Id == id);
-
             if (role == null)
             {
                 return NotFound();
@@ -39,17 +36,21 @@ namespace Server.Pages.Admin.RoleManager
             {
                 Role = role;
             }
+
             return Page();
+
         }
 
-        public async Task<IActionResult> OnPostAsync(Guid? id)
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetDeleteAsync(System.Guid? Id)
         {
-            if (id == null || _context.Role == null)
+
+            if (Id == null || _context.Role == null)
             {
                 return NotFound();
             }
-            var role = await _context.Role.FindAsync(id);
 
+            var role = await _context.Role.FindAsync(Id);
             if (role != null)
             {
                 Role = role;
@@ -58,6 +59,7 @@ namespace Server.Pages.Admin.RoleManager
             }
 
             return RedirectToPage("./Index");
+
         }
     }
 }

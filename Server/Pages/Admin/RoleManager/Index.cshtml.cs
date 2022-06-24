@@ -1,52 +1,28 @@
-using Domain.Account;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace Server.Pages.Admin.RoleManager
 {
     public class IndexModel : Infrastructure.BasePageModel
     {
 
-        private readonly Persistence.DatabaseContext _context;
 
-        public IndexModel(Persistence.DatabaseContext Context)
+
+        public IndexModel(Persistence.DatabaseContext Context) : base()
         {
             _context = Context;
-            Roles = new()
-            {
-                new Role(){}
-            };
         }
 
-        public List<Role> Roles { get; set; }
+        private readonly Persistence.DatabaseContext _context;
 
-        public async Task<IActionResult> OnGetAsync()
+        public System.Collections.Generic.IList
+            <Domain.Account.Role> Roles
+        { get; set; } = default!;
+
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync()
         {
 
-            //Roles = new List<Role>()
-            //{
-            //    new Role() 
-            //    {
-            //        Id = System.Guid.NewGuid(),
-            //        RoleName = "Admin" 
-            //    },
-            //    new Role()
-            //    {
-            //        Id = System.Guid.NewGuid(),
-            //        RoleName = "User"
-            //    },
-            //    new Role()
-            //    {
-            //        Id = System.Guid.NewGuid(),
-            //        RoleName = "Guest"
-            //    },
-            //};
-        
-
-
+            //ToListAsync  -> Microsoft.EntityFrameworkCore
             Roles = await _context.Role.ToListAsync();
 
             if (Roles == null)
