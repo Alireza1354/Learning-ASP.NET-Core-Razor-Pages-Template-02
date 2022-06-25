@@ -160,7 +160,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to خیر.
+        ///   Looks up a localized string similar to No.
         /// </summary>
         public static string No {
             get {
@@ -214,7 +214,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to بلی.
+        ///   Looks up a localized string similar to Yes.
         /// </summary>
         public static string Yes {
             get {
