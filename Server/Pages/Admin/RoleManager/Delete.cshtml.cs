@@ -42,7 +42,7 @@ namespace Server.Pages.Admin.RoleManager
         }
 
         public async System.Threading.Tasks.Task
-            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetDeleteAsync(System.Guid? Id)
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnPostDeleteAsync(System.Guid? Id)
         {
 
             if (Id == null || _context.Role == null)
