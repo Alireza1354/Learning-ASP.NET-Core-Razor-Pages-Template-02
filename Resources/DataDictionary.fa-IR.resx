@@ -126,6 +126,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>تکرار گذرواژه</value>
   </data>
+  <data name="DefaultRole" xml:space="preserve">
+    <value>نقش پیش فرض</value>
+  </data>
   <data name="DeleteConfirmationMessage" xml:space="preserve">
     <value>آیا مطمئن هستید که می خواهید حذف کنید؟</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="IsActive" xml:space="preserve">
     <value>فعال</value>
+  </data>
+  <data name="IsDeletable" xml:space="preserve">
+    <value>قابلیت حذف</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>زبان</value>

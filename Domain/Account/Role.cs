@@ -6,16 +6,17 @@ using System.Threading.Tasks;
 
 namespace Domain.Account
 {
-    public class Role : SeedWork.Entity, SeedWork.IEntityHasIsActive
+    public class Role : SeedWork.Entity, SeedWork.IEntityHasIsActive, SeedWork.IEntityHasIsDeletable
     {
 
-        public Role():base()
+        public Role() : base()
         {
             RoleName = "User Role";
+            IsDeletable = true;
+            IsDefault = false;
         }
 
-        //*****************************************************************************
-
+        // **********
         [System.ComponentModel.DataAnnotations.Display
             (Name = nameof(Resources.DataDictionary.RoleName),
             ResourceType = typeof(Resources.DataDictionary))]
@@ -31,16 +32,30 @@ namespace Domain.Account
             ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
 
         public string RoleName { get; set; }
+        // **********
 
-        //*****************************************************************************
-
+        // **********
         [System.ComponentModel.DataAnnotations.Display
            (Name = nameof(Resources.DataDictionary.IsActive),
            ResourceType = typeof(Resources.DataDictionary))]
 
         public bool IsActive { get; set; }
+        // **********
 
-        //*****************************************************************************
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
+           (Name = nameof(Resources.DataDictionary.IsDeletable),
+           ResourceType = typeof(Resources.DataDictionary))]
 
+        public bool IsDeletable { get; set; }
+        // **********
+
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
+           (Name = nameof(Resources.DataDictionary.DefaultRole),
+           ResourceType = typeof(Resources.DataDictionary))]
+
+        public bool IsDefault { get; set; }
+        // **********
     }
 }

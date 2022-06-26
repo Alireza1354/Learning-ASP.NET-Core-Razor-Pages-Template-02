@@ -126,6 +126,9 @@
   <data name="ConfirmPassword" xml:space="preserve">
     <value>Confirm Password</value>
   </data>
+  <data name="DefaultRole" xml:space="preserve">
+    <value>Default Role</value>
+  </data>
   <data name="DeleteConfirmationMessage" xml:space="preserve">
     <value>Are you sure you want to delete?</value>
   </data>
@@ -149,6 +152,9 @@
   </data>
   <data name="IsActive" xml:space="preserve">
     <value>Active</value>
+  </data>
+  <data name="IsDeletable" xml:space="preserve">
+    <value>Can Be Deleted</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
@@ -185,6 +191,9 @@
   </data>
   <data name="SiteAuthor" xml:space="preserve">
     <value>Dariush Tasdighi</value>
+  </data>
+  <data name="Sites" xml:space="preserve">
+    <value>Sites</value>
   </data>
   <data name="SiteTitle" xml:space="preserve">
     <value>Iranian Experts</value>

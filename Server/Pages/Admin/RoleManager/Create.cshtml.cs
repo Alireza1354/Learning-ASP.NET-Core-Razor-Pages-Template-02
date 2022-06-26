@@ -1,4 +1,6 @@
 
+using System.Linq;
+
 namespace Server.Pages.Admin.RoleManager
 {
     public class CreateModel : Infrastructure.BasePageModel
@@ -16,8 +18,15 @@ namespace Server.Pages.Admin.RoleManager
         [Microsoft.AspNetCore.Mvc.BindProperty]
         public Domain.Account.Role Role { get; set; }
 
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public string DefaultUserDefined { get; set; }
+
         public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
         {
+            if (DefaultRoleExists())
+            {
+
+            }
             return Page();
         }
 
@@ -29,10 +38,18 @@ namespace Server.Pages.Admin.RoleManager
                 return Page();
             }
 
+            
+
             _context.Role.Add(Role);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        private bool DefaultRoleExists()
+        {
+            //Any -> System.Linq
+            return (_context.Role?.Any(e => e.IsDefault == true)).GetValueOrDefault();
         }
     }
 }

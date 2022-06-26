@@ -88,6 +88,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default Role.
+        /// </summary>
+        public static string DefaultRole {
+            get {
+                return ResourceManager.GetString("DefaultRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to delete?.
         /// </summary>
         public static string DeleteConfirmationMessage {
@@ -156,6 +165,15 @@ namespace Resources {
         public static string IsActive {
             get {
                 return ResourceManager.GetString("IsActive", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can Be Deleted.
+        /// </summary>
+        public static string IsDeletable {
+            get {
+                return ResourceManager.GetString("IsDeletable", resourceCulture);
             }
         }
         
@@ -264,6 +282,15 @@ namespace Resources {
         public static string SiteAuthor {
             get {
                 return ResourceManager.GetString("SiteAuthor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sites.
+        /// </summary>
+        public static string Sites {
+            get {
+                return ResourceManager.GetString("Sites", resourceCulture);
             }
         }
         
