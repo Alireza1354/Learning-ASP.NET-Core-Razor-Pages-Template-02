@@ -1,34 +1,33 @@
 ﻿
 namespace ViewModels.Pages.Admin.RoleManager
 {
-    internal class RoleViewModel : object
+    public class RoleViewModel : object
     {
         public RoleViewModel() : base()
         {
             RoleName = "User Role";
         }
 
-		// **********
-		[System.ComponentModel.DataAnnotations.Key]
+        // **********
+        //[System.ComponentModel.DataAnnotations.Key]
 
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.Id))]
+        //[System.ComponentModel.DataAnnotations.Display
+        //	(ResourceType = typeof(Resources.DataDictionary),
+        //	Name = nameof(Resources.DataDictionary.Id))]
 
-		[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
-			(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
-		public System.Guid Id { get; set; }
-		// **********
-
-		// **********
-		[System.ComponentModel.DataAnnotations.Display
-			(ResourceType = typeof(Resources.DataDictionary),
-			Name = nameof(Resources.DataDictionary.InsertDateTime))]
-		public System.DateTime InsertDateTime { get; private set; }
+        //[System.ComponentModel.DataAnnotations.Schema.DatabaseGenerated
+        //	(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.None)]
+        //public System.Guid Id { get; set; }
         // **********
 
         // **********
+        [System.ComponentModel.DataAnnotations.Display
+            (ResourceType = typeof(Resources.DataDictionary),
+            Name = nameof(Resources.DataDictionary.InsertDateTime))]
+        public System.DateTime InsertDateTime { get; private set; }
+        // **********
 
+        // **********
         [System.ComponentModel.DataAnnotations.Display
             (Name = nameof(Resources.DataDictionary.RoleName),
             ResourceType = typeof(Resources.DataDictionary))]
@@ -47,13 +46,27 @@ namespace ViewModels.Pages.Admin.RoleManager
         // **********
 
         // **********
-
         [System.ComponentModel.DataAnnotations.Display
            (Name = nameof(Resources.DataDictionary.IsActive),
            ResourceType = typeof(Resources.DataDictionary))]
 
         public bool IsActive { get; set; }
+        // **********
 
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
+           (Name = nameof(Resources.DataDictionary.IsDeletable),
+           ResourceType = typeof(Resources.DataDictionary))]
+
+        public bool IsDeletable { get; set; }
+        // **********
+
+        // **********
+        [System.ComponentModel.DataAnnotations.Display
+           (Name = nameof(Resources.DataDictionary.DefaultRole),
+           ResourceType = typeof(Resources.DataDictionary))]
+
+        public bool IsDefault { get; set; }
         // **********
     }
 }

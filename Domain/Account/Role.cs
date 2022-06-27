@@ -17,44 +17,18 @@ namespace Domain.Account
         }
 
         // **********
-        [System.ComponentModel.DataAnnotations.Display
-            (Name = nameof(Resources.DataDictionary.RoleName),
-            ResourceType = typeof(Resources.DataDictionary))]
-
-        [System.ComponentModel.DataAnnotations.Required
-            (AllowEmptyStrings = false,
-            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-            ErrorMessageResourceName = nameof(Resources.Messages.Validations.Required))]
-
-        [System.ComponentModel.DataAnnotations.MaxLength
-            (length: Domain.SeedWork.Constant.MaxLength.Username,
-            ErrorMessageResourceType = typeof(Resources.Messages.Validations),
-            ErrorMessageResourceName = nameof(Resources.Messages.Validations.MaxLength))]
-
         public string RoleName { get; set; }
         // **********
 
         // **********
-        [System.ComponentModel.DataAnnotations.Display
-           (Name = nameof(Resources.DataDictionary.IsActive),
-           ResourceType = typeof(Resources.DataDictionary))]
-
         public bool IsActive { get; set; }
         // **********
 
         // **********
-        [System.ComponentModel.DataAnnotations.Display
-           (Name = nameof(Resources.DataDictionary.IsDeletable),
-           ResourceType = typeof(Resources.DataDictionary))]
-
         public bool IsDeletable { get; set; }
         // **********
 
         // **********
-        [System.ComponentModel.DataAnnotations.Display
-           (Name = nameof(Resources.DataDictionary.DefaultRole),
-           ResourceType = typeof(Resources.DataDictionary))]
-
         public bool IsDefault { get; set; }
         // **********
     }

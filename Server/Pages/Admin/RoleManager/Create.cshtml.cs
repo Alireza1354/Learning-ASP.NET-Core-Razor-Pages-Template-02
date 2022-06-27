@@ -1,5 +1,7 @@
-
+using Domain.Account;
+using System;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace Server.Pages.Admin.RoleManager
 {
@@ -10,23 +12,30 @@ namespace Server.Pages.Admin.RoleManager
         {
             _context = Context;
 
-            Role = new();
+            RoleViewModel = new();
+            ErrorMessage = "";
+            DefaultRoleName = "";
         }
 
         private readonly Persistence.DatabaseContext _context;
 
-        [Microsoft.AspNetCore.Mvc.BindProperty]
-        public Domain.Account.Role Role { get; set; }
+        public string ErrorMessage { get; set; }
+
+        public string DefaultRoleName { get; set; }
 
         [Microsoft.AspNetCore.Mvc.BindProperty]
-        public string DefaultUserDefined { get; set; }
+        public ViewModels.Pages.Admin.RoleManager.RoleViewModel RoleViewModel { get; set; }
 
-        public Microsoft.AspNetCore.Mvc.IActionResult OnGet()
+        public async System.Threading.Tasks.Task
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGet()
         {
-            if (DefaultRoleExists())
-            {
 
+            var role = await _context.Role.FirstOrDefaultAsync(e => e.IsDefault == true);
+            if (role != null)
+            {
+                DefaultRoleName = role.RoleName;
             }
+
             return Page();
         }
 
@@ -38,9 +47,12 @@ namespace Server.Pages.Admin.RoleManager
                 return Page();
             }
 
-            
+            //https://docs.microsoft.com/en-gb/aspnet/core/data/ef-rp/crud?view=aspnetcore-6.0
 
-            _context.Role.Add(Role);
+            var role = _context.Add(new Role());
+
+            role.CurrentValues.SetValues(RoleViewModel);
+
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
@@ -53,3 +65,4 @@ namespace Server.Pages.Admin.RoleManager
         }
     }
 }
+
