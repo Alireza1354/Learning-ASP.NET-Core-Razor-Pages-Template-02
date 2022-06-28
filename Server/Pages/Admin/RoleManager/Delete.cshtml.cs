@@ -1,26 +1,35 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Server.Pages.Admin.RoleManager
 {
     public class DeleteModel : Infrastructure.BasePageModel
     {
 
-        public DeleteModel(Persistence.DatabaseContext Context) : base()
-        {
-            _context = Context;
-
-            Role = new();
-        }
+        //Microsoft.Extensions.Logging ---> ILogger
+        private readonly ILogger<DeleteModel> _logger;
 
         private readonly Persistence.DatabaseContext _context;
 
+        public DeleteModel(Persistence.DatabaseContext Context, ILogger<DeleteModel> logger) : base()
+        {
+            _logger = logger;
+            _context = Context;
+            ErrorMessage = "";
+            RoleViewModel = new();
+        }
 
-        //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/operators/default
         [Microsoft.AspNetCore.Mvc.BindProperty]
-        public Domain.Account.Role Role { get; set; } = default!;
+        public System.Guid Id { get; set; }
+
+        public string ErrorMessage { get; set; }
+
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public ViewModels.Pages.Admin.RoleManager.RoleViewModel RoleViewModel { get; set; }
+
 
         public async System.Threading.Tasks.Task
-            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
+            <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id, bool? saveChangesError = false)
         {
 
             if (id == null || _context.Role == null)
@@ -29,14 +38,25 @@ namespace Server.Pages.Admin.RoleManager
             }
 
             //FirstOrDefaultAsync -> using Microsoft.EntityFrameworkCore;
-            var role = await _context.Role.FirstOrDefaultAsync(m => m.Id == id);
+            var role = await _context.Role
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(m => m.Id == id);
+
             if (role == null)
             {
                 return NotFound();
             }
             else
             {
-                Role = role;
+                RoleViewModel.RoleName = role.RoleName;
+                RoleViewModel.IsActive = role.IsActive;
+                RoleViewModel.IsDefault = role.IsDefault;
+                RoleViewModel.IsDeletable = role.IsDeletable;
+            }
+
+            if (saveChangesError.GetValueOrDefault())
+            {
+                ErrorMessage = System.String.Format("Delete {ID} failed. Try again", id);
             }
 
             return Page();
@@ -53,14 +73,24 @@ namespace Server.Pages.Admin.RoleManager
             }
 
             var role = await _context.Role.FindAsync(Id);
-            if (role != null)
+            if (role == null)
             {
-                Role = role;
-                _context.Role.Remove(Role);
-                await _context.SaveChangesAsync();
+                return NotFound();
             }
 
-            return RedirectToPage("./Index");
+            try
+            {
+                _context.Role.Remove(role);
+                await _context.SaveChangesAsync();
+                return RedirectToPage("./Index");
+            }
+            catch (DbUpdateException ex)
+            {
+                _logger.LogError(ex, ErrorMessage);
+
+                return RedirectToAction("./Delete",
+                                     new { Id, saveChangesError = true });
+            }
 
         }
     }

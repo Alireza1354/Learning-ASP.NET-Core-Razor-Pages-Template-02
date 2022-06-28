@@ -1,5 +1,4 @@
 using Domain.Account;
-using System;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,13 +14,19 @@ namespace Server.Pages.Admin.RoleManager
             RoleViewModel = new();
             ErrorMessage = "";
             DefaultRoleName = "";
+            DefaultRoleValue = "";
         }
 
         private readonly Persistence.DatabaseContext _context;
 
         public string ErrorMessage { get; set; }
 
+        [Microsoft.AspNetCore.Mvc.BindProperty]
         public string DefaultRoleName { get; set; }
+
+        [Microsoft.AspNetCore.Mvc.BindProperty]
+        public string DefaultRoleValue { get; set; }
+
 
         [Microsoft.AspNetCore.Mvc.BindProperty]
         public ViewModels.Pages.Admin.RoleManager.RoleViewModel RoleViewModel { get; set; }
@@ -42,14 +47,23 @@ namespace Server.Pages.Admin.RoleManager
         public async System.Threading.Tasks.Task
             <Microsoft.AspNetCore.Mvc.IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
-            {
-                return Page();
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return Page();
+            //}
 
             //https://docs.microsoft.com/en-gb/aspnet/core/data/ef-rp/crud?view=aspnetcore-6.0
 
             var role = _context.Add(new Role());
+
+            if (DefaultRoleValue == "IsDefaultRole")
+            {
+                RoleViewModel.IsDefault = true;
+            }
+            else
+            {
+                RoleViewModel.IsDeletable = true;
+            }
 
             role.CurrentValues.SetValues(RoleViewModel);
 
@@ -65,4 +79,3 @@ namespace Server.Pages.Admin.RoleManager
         }
     }
 }
-

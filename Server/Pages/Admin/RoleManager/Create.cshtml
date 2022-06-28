@@ -30,36 +30,36 @@
                         @(Resources.PageTitles.CreateRole)
                     </legend>
 
-
                     <div class="mb-3">
-                        <label asp-for="Role.RoleName" class="form-label"></label>
+                        <label asp-for="RoleViewModel.RoleName" class="form-label"></label>
 
                         <div class="input-group">
                             <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
-                            <input asp-for="Role.RoleName" class="form-control" dir="ltr" />
+                            <input asp-for="RoleViewModel.RoleName" class="form-control" dir="ltr" />
                         </div>
 
-                        <span asp-validation-for="Role.RoleName" class="text-danger"></span>
+                        <span asp-validation-for="RoleViewModel.RoleName" class="text-danger"></span>
                     </div>
 
                     <div class="form-group form-check">
                         <label class="form-check-label">
-                            <input class="form-check-input" asp-for="Role.IsActive" />
-                            @Html.DisplayNameFor(model => model.Role.IsActive)
+                            <input class="form-check-input" asp-for="RoleViewModel.IsActive" type="checkbox" checked="checked" />
+                            @Html.DisplayNameFor(model => model.RoleViewModel.IsActive)
                         </label>
                     </div>
 
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="Role.IsDefault" type="radio" name="chooseRadio" value="IsDefault" checked />
-                            @Html.DisplayNameFor(model => model.Role.IsDefault)
+                    @*****************************************************************************************************************************@
+
+                    <div class="form-check">
+                        <input class="form-check-input" id="radioForDefaultRole"  asp-for="DefaultRoleValue" type="radio" value="IsDefaultRole" checked="checked"/>
+                        <label class="form-check-label" for="radioForDefaultRole">
+                            @Html.DisplayNameFor(model => model.RoleViewModel.IsDefault)
                         </label>
                     </div>
-
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="Role.IsDeletable" type="radio" name="chooseRadio" value="IsDeletable" />
-                            @Html.DisplayNameFor(model => model.Role.IsDeletable)
+                    <div class="form-check">
+                        <input class="form-check-input" id="radioForIsDeletable"  asp-for="DefaultRoleValue" type="radio" value="IsDeletable">
+                        <label class="form-check-label" for="radioForIsDeletable">
+                            @Html.DisplayNameFor(model => model.RoleViewModel.IsDeletable)
                         </label>
                     </div>
 
@@ -67,7 +67,6 @@
                         <button type="submit" class="btn btn-outline-primary">@(Resources.ButtonCaptions.Save)</button>
                         <button type="reset" class="btn btn-outline-secondary">@(Resources.ButtonCaptions.Reset)</button>
                     </div>
-
 
                 </fieldset>
 

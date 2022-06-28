@@ -26,10 +26,46 @@
                     @(Resources.PageTitles.DeleteRole)
                 </legend>
 
-                <div class="mb-3">
-                    <label asp-for="Role.Id" class="form-label"></label>
-                    <input asp-for="Role.Id" readonly class="form-control" dir="ltr" />
-                </div>
+
+                <dl class="row">
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoleViewModel.RoleName)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoleViewModel.RoleName)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoleViewModel.InsertDateTime)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoleViewModel.InsertDateTime)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoleViewModel.IsActive)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoleViewModel.IsActive)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoleViewModel.IsDefault)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoleViewModel.IsDefault)
+                    </dd>
+
+                    <dt class="col-sm-3">
+                        @Html.DisplayNameFor(model => model.RoleViewModel.IsDeletable)
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Html.DisplayFor(model => model.RoleViewModel.IsDeletable)
+                    </dd>
+                </dl>
+
+
+@*
                 <div class="mb-3">
                     <label asp-for="Role.RoleName" class="form-label"></label>
                     <input asp-for="Role.RoleName" readonly class="form-control" dir="ltr" />
@@ -43,7 +79,7 @@
                     <label class="form-check-label">
                         <input class="form-check-input" asp-for="Role.IsActive" disabled /> @Html.DisplayNameFor(model => model.Role.IsActive)
                     </label>
-                </div>
+                </div>*@
 
             </fieldset>
 
@@ -84,10 +120,11 @@
                         @(Resources.ButtonCaptions.No)
                     </button>
                     <form asp-page-handler="Delete" method="post">
+                        <input type="hidden" asp-for="Id" />
                         <button class="btn btn-danger">
                             @(Resources.ButtonCaptions.Delete)
                         </button>
-                        <input type="hidden" name="Id" value="@Model.Role.Id" />
+                        @*<input type="hidden" name="Id" value="@Model.Role.Id" />*@
                     </form>
                 </div>
             </div>
