@@ -1,14 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 
 namespace Server.Pages.Admin.RoleManager
 {
-    public class EditModel : Infrastructure.BasePageModel
+    public class EditForDefaultRoleModel : PageModel
     {
 
         private readonly Persistence.DatabaseContext _context;
 
-        public EditModel(Persistence.DatabaseContext Context) : base()
+        public EditForDefaultRoleModel(Persistence.DatabaseContext Context) : base()
         {
             _context = Context;
             RoleViewModel = new();
@@ -18,7 +19,8 @@ namespace Server.Pages.Admin.RoleManager
         public System.Guid Id { get; set; }
 
         [Microsoft.AspNetCore.Mvc.BindProperty]
-        public ViewModels.Pages.Admin.RoleManager.RoleViewModel RoleViewModel { get; set; }
+        public ViewModels.Pages.Admin.RoleManager.RoleViewModelForEditDefaultRole RoleViewModel { get; set; }
+
 
         public async System.Threading.Tasks.Task
             <Microsoft.AspNetCore.Mvc.IActionResult> OnGetAsync(System.Guid? id)
@@ -35,15 +37,7 @@ namespace Server.Pages.Admin.RoleManager
                 return NotFound();
             }
 
-            if (true)
-            {
-
-            }
-
             RoleViewModel.RoleName = role.RoleName;
-            RoleViewModel.IsDefault = role.IsDefault;
-            RoleViewModel.IsDeletable = role.IsDeletable;
-            RoleViewModel.IsActive = role.IsActive;
 
             return Page();
         }
@@ -73,34 +67,7 @@ namespace Server.Pages.Admin.RoleManager
             }
 
             return Page();
-            //************************************************************
-            //_context.Attach(RoleViewModel).State = EntityState.Modified;
-
-            //try
-            //{
-            //    await _context.SaveChangesAsync();
-            //}
-            //catch (DbUpdateConcurrencyException)
-            //{
-            //    if (!RoleExists(Role.Id))
-            //    {
-            //        return NotFound();
-            //    }
-            //    else
-            //    {
-            //        throw;
-            //    }
-            //}
-
-            //return RedirectToPage("./Index");
-
-            //*****************************************************
         }
 
-        //private bool RoleExists(System.Guid id)
-        //{
-        //    //Any -> System.Linq
-        //    return (_context.Role?.Any(e => e.Id == id)).GetValueOrDefault();
-        //}
     }
 }

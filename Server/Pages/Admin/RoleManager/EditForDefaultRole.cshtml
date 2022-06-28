@@ -1,5 +1,5 @@
 ﻿@page
-@model Server.Pages.Admin.RoleManager.EditModel
+@model Server.Pages.Admin.RoleManager.EditForDefaultRoleModel
 
 @{
     var pageTitle =
@@ -35,24 +35,6 @@
                         <input asp-for="RoleViewModel.RoleName" class="form-control" dir="ltr" />
                         <span asp-validation-for="RoleViewModel.RoleName" class="text-danger"></span>
                     </div>
-                    <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="RoleViewModel.IsActive" />
-                            @Html.DisplayNameFor(model => model.RoleViewModel.IsActive)
-                        </label>
-                    </div>
-                     <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="RoleViewModel.IsDefault" />
-                            @Html.DisplayNameFor(model => model.RoleViewModel.IsDefault)
-                        </label>
-                    </div>
-                     <div class="form-group form-check">
-                        <label class="form-check-label">
-                            <input class="form-check-input" asp-for="RoleViewModel.IsDeletable" />
-                            @Html.DisplayNameFor(model => model.RoleViewModel.IsDeletable)
-                        </label>
-                    </div>
                     <div class="mb-3">
                         <button type="submit" class="btn btn-outline-success">@(Resources.ButtonCaptions.Save)</button>
                         <button type="reset" class="btn btn-outline-danger">@(Resources.ButtonCaptions.Reset)</button>
@@ -71,6 +53,3 @@
         </div>
     </div>
 </div>
-
-
-
